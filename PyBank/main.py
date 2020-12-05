@@ -40,25 +40,28 @@ with open(csvDir) as csvFile:
     #use list comprehensions to make positive and negative lists and find the max/min of those lists
     incPL = max([val for val in changeList if val > 0])
     decPL = min([val for val in changeList if val < 0])
-    
-#write to the terminal
+
+    #write to the terminal
 print(f'Total Months: {totalMonths}')
 print(f'Total: ${PLNet}')
 print(f'Average Change: ${round(averagePL, 2)}')
 print(f'Greatest Increase in Profits: {monthsList[changeList.index(incPL)+1]} (${incPL})')
 print(f'Greatest Decrease in Profits: {monthsList[changeList.index(decPL)+1]} (${decPL})')
 
-#write to a txt file
-
-
-#write total months
-#write net PL
-#write average PL
-#write biggest increase of PL
-#write biggest decrease of PL
-
+#write output to a txt file
+#assign output path to variable
+txtOutDir = os.path.join("analysis","PyBankAnalysis.txt")
+with open(txtOutDir, 'w', newline='') as txtFile:
+    txtFile.write(f'Financial Analysis\n')
+    txtFile.write(f'----------------------------\n')
+    txtFile.write(f'Total Months: {totalMonths}\n')
+    txtFile.write(f'Total: ${PLNet}\n')
+    txtFile.write(f'Average Change: ${round(averagePL, 2)}\n')
+    txtFile.write(f'Greatest Increase in Profits: {monthsList[changeList.index(incPL)+1]} (${incPL})\n')
+    txtFile.write(f'Greatest Decrease in Profits: {monthsList[changeList.index(decPL)+1]} (${decPL})\n')
 
 
 #notes for commits
-#pseudocoded
-#added reader
+    #pseudocoded
+    #added reader
+    #added txt writer & added txt formatting
