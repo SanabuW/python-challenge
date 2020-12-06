@@ -70,4 +70,4 @@ with open(txtOutDir, 'w', newline='') as txtFile:
     txtFile.write(votedCandidates[3] + ": " + format(votePercentages[3], '.3f') + "% (" + str(votesPerCandidate[3]) + ")\n")
     txtFile.write(f'-------------------------\n')
     txtFile.write(f'Winner: {winningCandidate}\n')
-    txtFile.write(f'-------------------------\n')
+    txtFile.write(f'-------------------------')
