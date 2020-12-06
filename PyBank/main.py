@@ -2,7 +2,6 @@
 import os
 import csv
 
-
 #Set variables
 totalMonths = 0
 monthsList = []
@@ -11,14 +10,15 @@ PLList = []
 changeList=[]
 
 #Read the csv
+#assign filepath
 csvDir = os.path.join("Resources","budget_data.csv")
 #open the csv in read mode
 with open(csvDir) as csvFile:
     #create reader object
     csvReader = csv.reader(csvFile, delimiter=",")
-    #skip the header
+    #store the header
     csvHeader = next(csvReader)
-    #loop through reader object to find the 
+    #loop through reader object
     for x in csvReader:
     #get values to output
         #total months     
@@ -65,3 +65,6 @@ with open(txtOutDir, 'w', newline='') as txtFile:
     #pseudocoded
     #added reader
     #added txt writer & added txt formatting
+#Todo
+    #clean list
+    #add in decoration print to terminal
