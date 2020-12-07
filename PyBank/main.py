@@ -7,7 +7,7 @@ totalMonths = 0
 monthsList = []
 PLNet = 0
 PLList = []
-changeList=[]
+changeList = []
 
 #Read the csv
 #assign filepath for source csv
@@ -37,8 +37,8 @@ with open(csvDir) as csvFile:
         averagePL = sum(changeList)/(len(changeList))
     #find largest incresing/decreasing PL values
     #use list comprehensions to make positive and negative lists and find the max/min of those lists
-    incPL = max([val for val in changeList if val > 0])
-    decPL = min([val for val in changeList if val < 0])
+    incPL = max([val for val in changeList if val])
+    decPL = min([val for val in changeList if val])
 
 #write to the terminal
 print(f'Financial Analysis')
@@ -60,4 +60,4 @@ with open(txtOutDir, 'w', newline='') as txtFile:
     txtFile.write(f'Total: ${PLNet}\n')
     txtFile.write(f'Average Change: ${round(averagePL, 2)}\n')
     txtFile.write(f'Greatest Increase in Profits: {monthsList[changeList.index(incPL)+1]} (${incPL})\n')
-    txtFile.write(f'Greatest Decrease in Profits: {monthsList[changeList.index(decPL)+1]} (${decPL})\n')
+    txtFile.write(f'Greatest Decrease in Profits: {monthsList[changeList.index(decPL)+1]} (${decPL})')
