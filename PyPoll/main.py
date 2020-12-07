@@ -5,8 +5,8 @@ import csv
 #Set variables
 totalVotes = 0
 votedCandidates = []
-votePercentages = [0,0,0,0]
-votesPerCandidate = [0, 0, 0, 0]
+votePercentages = []
+votesPerCandidate = []
 winningCandidate = ""
 
 #read from csv
@@ -27,6 +27,9 @@ with open(csvDir) as csvFile:
         #build list of unique candidates
         if str(x[2]) not in votedCandidates:
             votedCandidates.append(x[2])
+            #build index for percentages and vote count for each candidate
+            votePercentages.append(0)
+            votesPerCandidate.append(0)
         #count votes for each candidate by findinding the index of the candidate that the 
         #reader is on in the candidates list and pass it to the votes per candidate list at that index
         if str(x[2]) in votedCandidates:
@@ -44,11 +47,9 @@ print(f'Election Results')
 print(f'-------------------------')
 print(f'Total Votes: {totalVotes}')
 print(f'-------------------------')
-#removed f'string notation to allow formatting of percentages to the .000 position
-print(votedCandidates[0] + ": " + format(votePercentages[0], '.3f') + "% (" + str(votesPerCandidate[0]) + ")")
-print(votedCandidates[1] + ": " + format(votePercentages[1], '.3f') + "% (" + str(votesPerCandidate[1]) + ")")
-print(votedCandidates[2] + ": " + format(votePercentages[2], '.3f') + "% (" + str(votesPerCandidate[2]) + ")")
-print(votedCandidates[3] + ": " + format(votePercentages[3], '.3f') + "% (" + str(votesPerCandidate[3]) + ")")
+#loop to dynamically react to # of candidates if different datasets are offered
+for candidate in votedCandidates:
+    print(f"{candidate}: {votePercentages[int(votedCandidates.index(candidate))]:.3f}% ({str(votesPerCandidate[int(votedCandidates.index(candidate))])})")
 print(f'-------------------------')
 print(f'Winner: {winningCandidate}')
 print(f'-------------------------')
@@ -64,10 +65,9 @@ with open(txtOutDir, 'w', newline='') as txtFile:
     txtFile.write(f'-------------------------\n')
     txtFile.write(f'Total Votes: {totalVotes}\n')
     txtFile.write(f'-------------------------\n')
-    txtFile.write(votedCandidates[0] + ": " + format(votePercentages[0], '.3f') + "% (" + str(votesPerCandidate[0]) + ")\n")
-    txtFile.write(votedCandidates[1] + ": " + format(votePercentages[1], '.3f') + "% (" + str(votesPerCandidate[1]) + ")\n")
-    txtFile.write(votedCandidates[2] + ": " + format(votePercentages[2], '.3f') + "% (" + str(votesPerCandidate[2]) + ")\n")
-    txtFile.write(votedCandidates[3] + ": " + format(votePercentages[3], '.3f') + "% (" + str(votesPerCandidate[3]) + ")\n")
+    #loop to dynamically react to # of candidates if different datasets are offered
+    for candidate in votedCandidates:
+        txtFile.write(f"{candidate}: {votePercentages[int(votedCandidates.index(candidate))]:.3f}% ({str(votesPerCandidate[int(votedCandidates.index(candidate))])})")
     txtFile.write(f'-------------------------\n')
     txtFile.write(f'Winner: {winningCandidate}\n')
     txtFile.write(f'-------------------------')
