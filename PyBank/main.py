@@ -33,12 +33,12 @@ with open(csvDir) as csvFile:
     #use new PLList to create a list of all PL value changes
     for val in range(1, len(PLList)):
         changeList.append(int(PLList[val]) - int(PLList[val-1]))
-        #find average PL
-        averagePL = sum(changeList)/(len(changeList))
+    #find average PL
+    averagePL = sum(changeList)/(len(changeList))
     #find largest incresing/decreasing PL values
     #use list comprehensions to make positive and negative lists and find the max/min of those lists
-    incPL = max([val for val in changeList if val])
-    decPL = min([val for val in changeList if val])
+    incPL = max([val for val in changeList])
+    decPL = min([val for val in changeList])
 
 #write to the terminal
 print(f'Financial Analysis')
